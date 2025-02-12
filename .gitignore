@@ -3,10 +3,10 @@
 /CMakeFiles/
 /cmake_install.cmake
 /Makefile
+/*.dSYM/
+/*.sSYM
+/.vscode/
 *.o
 *.out
 *.a
 *.so
-*.dSYM/
-*.sSYM
-.vscode/
