@@ -44,12 +44,3 @@ class Board {
             std::cout << "White Kings: " << std::bitset<32>(whiteKing) << std::endl;
         }
 };
-
-int main() {
-    Board board;
-    board.addPiece(9, board.blackMan);  // Add black piece to position 9
-    board.removePiece(32, board.whiteMan);  // Remove white piece from position 1
-
-    board.printBitboards();
-    return 0;
-}
