@@ -1,5 +1,6 @@
 #include <iostream>
 #include <bitset>
+#include <string>
 
 class Board {
     public:
@@ -17,4 +18,38 @@ class Board {
             whiteMan = 0xFF000000;
             whiteKing = 0x00000000;
         }
+        /*
+        My logic is to use the or operator to add a piece at a 
+        given position by shifting positoion 1 and returning 1 or the other.
+        I also modify the bitboard in place by passing a reference.
+        */
+        void addPiece(int position, uint32_t& bitboard) {
+            bitboard |= (0x00000001 << (position-1));
+        }
+        /*
+        This works the same way, but by using an and and a not operator.
+        */
+        void removePiece(int position, uint32_t& bitboard) {
+            bitboard &= ~(0x00000001 << (position-1));
+        }
+
+        bool pieceAt(int position, uint32_t& bitboard) {
+            return (bitboard & (0x00000001 << (position-1))) != 0;
+        }
+
+        void printBitboards() {
+            std::cout << "Black Men: " << std::bitset<32>(blackMan) << std::endl;
+            std::cout << "Black Kings: " << std::bitset<32>(blackKing) << std::endl;
+            std::cout << "White Men: " << std::bitset<32>(whiteMan) << std::endl;
+            std::cout << "White Kings: " << std::bitset<32>(whiteKing) << std::endl;
+        }
 };
+
+int main() {
+    Board board;
+    board.addPiece(9, board.blackMan);  // Add black piece to position 9
+    board.removePiece(32, board.whiteMan);  // Remove white piece from position 1
+
+    board.printBitboards();
+    return 0;
+}
